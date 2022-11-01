@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Assignment1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Assignment1
 {
@@ -24,7 +26,11 @@ namespace Assignment1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<StoreContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("StoreContext")));
         }
+    }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,4 +60,4 @@ namespace Assignment1
             });
         }
     }
-}
+
